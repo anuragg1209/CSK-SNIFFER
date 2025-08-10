@@ -101,7 +101,7 @@ if __name__ == "__main__":
                         action='store',
                         dest='output_dir',
                         required=True,
-                        help='Directory where output CSV files will be stored')
+                        help='Directory where output CSV files will be stored (default: output/csv_files)')
     parser.add_argument('--yolo_dir',
                         action='store',
                         dest='yolo_dir',

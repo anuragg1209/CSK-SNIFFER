@@ -12,11 +12,11 @@ def invoke_scripts(args):
     out1, err1 = p1.communicate()
     print(f"working1 with err {err1} and\n output {out1}")
 
-    p2 = Popen(['python', 'CollocationDetector.py', '--input_dir', f'{args.yolo_output_dir}', '--output_dir', f'{args.collocations_output_dir}'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    p2 = Popen(['python', 'collocation_detector.py', '--input_dir', f'{args.yolo_output_dir}', '--output_dir', f'{args.collocations_output_dir}'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
     out2, err2 = p2.communicate()
     print(f"working2 with err {err2} and\n output {out2}")
 
-    p3 = Popen(['python', 'csk_error_checker.py', '--csk_dir', f'{args.csk_indir}', '--inverted_index_dir', f'{args.index_dir}'],stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    p3 = Popen(['python', 'csk_error_checker.py', '--csk_dir', f'{args.csk_in_dir}', '--inverted_index_dir', f'{args.index_dir}'],stdin=PIPE, stdout=PIPE, stderr=PIPE)
     out3, err3 = p3.communicate()
     print(f"working3 with err {err3} and\n output {out3}")
 
@@ -28,7 +28,7 @@ if __name__ == '__main__':
                                            "\t --yolo_dir "
                                            "\t --image_search_term"
                                            "\t --collocations_output_dir"
-                                           "\t --csk_indir"
+                                           "\t --csk_in_dir"
                                            "\t --index_dir")
 
 
@@ -41,15 +41,15 @@ if __name__ == '__main__':
     parser.add_argument('--image_output_dir',
                         action='store',
                         dest='image_output_dir',
-                        default=f'/Users/anurag/PycharmProjects/CSK-SNIFFER/static/Images/',
+                        default=f'static/Images/',
                         required=False,
                         help='Path where downloaded Images will be stored')
     parser.add_argument('--yolo_output_dir',
                         action='store',
                         dest='yolo_output_dir',
-                        default='csv_files/',
+                        default='output/csv_files/',
                         required=False,
-                        help='csv files output directory location')
+                        help='CSV files output directory location (default: output/csv_files/)')
     parser.add_argument('--yolo_dir',
                         action='store',
                         dest='yolo_dir',
@@ -59,21 +59,21 @@ if __name__ == '__main__':
     parser.add_argument('--collocations_output_dir',
                         action='store',
                         dest='collocations_output_dir',
-                        default='tsv_files/',
+                        default='output/tsv_files/',
                         required=False,
-                        help='Collocations_map output directory location')
-    parser.add_argument('--csk_indir',
+                        help='Collocations_map output directory location (default: output/tsv_files/)')
+    parser.add_argument('--csk_in_dir',
                         action='store',
-                        dest='csk_indir',
+                        dest='csk_in_dir',
                         default='KB-CSK-SNIFFER.csv',
                         required=False,
                         help='Directory where csk file is stored')
     parser.add_argument('--index_dir',
                         action='store',
                         dest='index_dir',
-                        default='tsv_files/inverted_index.tsv',
+                        default='output/tsv_files/inverted_index.tsv',
                         required=False,
-                        help='Directory where inverted_index is stored')
+                        help='Directory where inverted_index is stored (default: output/tsv_files/inverted_index.tsv)')
 
     args = parser.parse_args()
     invoke_scripts(args=args)

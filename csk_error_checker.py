@@ -41,7 +41,7 @@ def check_csk(csk_file_path, inverted_index_path):
                 cell_value = csk_data.loc[label1][label2]
                 relations = [rel.strip() for rel in str(cell_value).split(',')]
                 if relation not in relations:
-                    with open("error_set.tsv", "a+") as outfile:
+                    with open("output/tsv_files/error_set.tsv", "a+") as outfile:
                         outfile.write(f"{img_ids}\t{triple_str}\t{label1},{cell_value},{label2}\n")
 
 

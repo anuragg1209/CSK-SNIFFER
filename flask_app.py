@@ -29,10 +29,11 @@ class Config:
     DEBUG = os.getenv('FLASK_DEBUG', 'True').lower() == 'true'
     
     # File paths and directories
+    OUTPUT_DIR = Path('output')
     STATIC_DIR = Path('static')
     IMAGES_DIR = STATIC_DIR / 'Images'
-    CSV_DIR = Path('csv_files')
-    TSV_DIR = Path('tsv_files')
+    CSV_DIR = OUTPUT_DIR / 'csv_files'
+    TSV_DIR = OUTPUT_DIR / 'tsv_files'
     
     # File patterns
     IMAGE_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp')
@@ -56,7 +57,7 @@ app.secret_key = os.getenv('FLASK_SECRET_KEY', 'dev-secret-key-change-in-product
 
 def ensure_directories_exist() -> None:
     """Ensure all required directories exist."""
-    directories = [Config.IMAGES_DIR, Config.CSV_DIR, Config.TSV_DIR]
+    directories = [Config.OUTPUT_DIR, Config.IMAGES_DIR, Config.CSV_DIR, Config.TSV_DIR]
     for directory in directories:
         directory.mkdir(parents=True, exist_ok=True)
         logger.info(f"Ensured directory exists: {directory}")

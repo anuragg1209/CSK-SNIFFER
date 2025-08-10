@@ -187,7 +187,7 @@ def update_inverted_index(collocations_map, inverted_index, img_id):
     #print(f"inverted_index: {inverted_index}")
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Code to generate spatial collocations',
-                                     usage="\n\npython CollocationDetector.py"
+                                     usage="\n\npython collocation_detector.py"
                                            "\t --input_dir "
                                            "\t --output_dir")
 
