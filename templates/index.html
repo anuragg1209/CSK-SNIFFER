@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Knowledge Graph</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/csk_styling.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .home-button .btn {
+            background: #F03861;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .home-button .btn:hover {
+            background: #ee204e;
+            transform: translateX(-5px);
+            color: white;
+            text-decoration: none;
+        }
+        .content-wrapper {
+            margin-top: 80px;
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .home-button {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 2rem;
+            }
+            .content-wrapper {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Home Button -->
+<div class="home-button">
+    <a href="/home_page" class="btn">
+        <i class="fa fa-home"></i> Back to Home
+    </a>
+</div>
+
+<div class="content-wrapper">
+    <div style="position:relative; align:center;">
+        <h1>{{name}}</h1>
+    </div>
+
+    {% if error %}
+        <div style="background: #f8d7da; color: #721c24; padding: 20px; border: 1px solid #f5c6cb; border-radius: 5px; margin: 20px 0; text-align: center; font-size: 16px;">
+            <i class="fa fa-exclamation-triangle"></i>
+            {{ error }}
+        </div>
+    {% elif data.empty %}
+        <div style="background: #d1ecf1; color: #0c5460; padding: 20px; border: 1px solid #bee5eb; border-radius: 5px; margin: 20px 0; text-align: center; font-size: 16px;">
+            <i class="fa fa-info-circle"></i>
+            No knowledge graph data available. This could mean the KB file is empty or corrupted.
+        </div>
+    {% else %}
+        <div>
+            {{ data.to_html(classes="table table-striped", index=false) | safe}}
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    // Handle back button to redirect to home page
+    window.addEventListener('popstate', function(event) {
+        // Redirect to home page when back button is clicked
+        window.location.href = '/home_page';
+    });
+    
+    // Replace current history entry to prevent going back to search page
+    window.history.replaceState(null, null, window.location.href);
+</script>
+
+</body>
+</html>

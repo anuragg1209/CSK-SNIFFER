@@ -1,0 +1,11 @@
+ ,person,car,bicycle,traffic light,bus,potted plant,truck,umbrella,chair,backpack
+person,"is_near,overlapsWith","is_near,is_inside","is_near,is_above,overlapsWith",is_below,"is_near,is_inside",is_near,"is_near,is_inside","is_near,is_below","is_near,is_above,overlapsWith","is_near,overlapsWith"
+car,is_near,"is_near,overlapsWith",is_near,is_below,"is_near,overlapsWith",is_near,"is_near,overlapsWith",is_near,is_near,is_near
+bicycle,"is_near,is_below,overlapsWith",is_near,is_near,is_below,is_near,is_near,is_near,is_below,is_near,"is_below,is_near"
+traffic light,is_above,is_above,is_above,"is_near,is_above",is_above,is_above,is_above,is_above,is_above,is_above
+bus,is_near,"is_near,overlapsWith",is_near,is_below,is_near,is_near,is_near,is_near,is_near,is_near
+potted plant,is_near,is_near,is_near,is_below,is_near,is_near,is_near,"is_near,is_below","is_near,is_above",is_near
+truck,is_near,is_near,is_near,"is_near,is_below",is_near,is_near,is_near,is_near,is_near,is_near
+umbrella,"is_near,is_above",is_near,"is_near,is_above",is_below,is_near,is_above,is_near,"is_near,overlapsWith","is_near,is_above",is_above
+chair,"is_near,is_below,overlapsWith","is_near,overlapsWith",is_near,is_below,is_near,is_near,is_near,is_below,"is_near,overlapsWith",is_below
+backpack,"is_near,is_inside,overlapsWith","is_near,is_inside","is_near,is_above",is_below,is_near,is_near,is_near,is_below,is_above,"is_near,overlapsWith"

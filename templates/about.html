@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - CSK SNIFFER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .about-container {
+            width: 80%;
+            margin: 5% auto 0 auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            max-width: 800px;
+            padding: 40px;
+            border-radius: 15px;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #F03861;
+        }
+        
+        .about-header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .about-header p {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        
+        .publications-section {
+            margin: 40px 0;
+        }
+        
+        .publications-section h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 4px solid #F03861;
+        }
+        
+        .publication-item {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #F03861;
+            transition: all 0.3s ease;
+        }
+        
+        .publication-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .publication-item h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .publication-item a {
+            color: #F03861;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .publication-item a:hover {
+            color: #ee204e;
+            text-decoration: underline;
+        }
+        
+        .citation-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+        
+        .citation-section h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .citation-section p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .back-button .btn {
+            background: #F03861;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .back-button .btn:hover {
+            background: #ee204e;
+            transform: translateX(-5px);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .back-button .btn:active {
+            transform: translateX(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .about-container {
+                width: 95%;
+                padding: 20px;
+                margin: 10% auto 0 auto;
+            }
+            
+            .about-header h1 {
+                font-size: 2rem;
+            }
+            
+            .back-button {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 2rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="back-button">
+        <a href="{{ url_for('home_page') }}" class="btn">
+            <i class="fa fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+    
+    <div class="about-container">
+        <div class="about-header">
+            <h1>About CSK SNIFFER</h1>
+            <p>Commonsense Knowledge for Sniffing Object Detection Errors</p>
+        </div>
+        
+        <div class="publications-section">
+            <h2>Publications 📚</h2>
+            <p style="color: #666; margin-bottom: 25px; font-size: 1.1rem;">
+                You can read more about this CSK Sniffer at the following publications:
+            </p>
+            
+            <div class="publication-item">
+                <h3>1. I Am Guessing You Can't Recognize This: Generating Adversarial Images for Object Detection Using Spatial Commonsense</h3>
+                <a href="https://aaai.org/papers/13789-i-am-guessing-you-can-t-recognize-this-generating-adversarial-images-for-object-detection-using-spatial-commonsense-student-abstract/" target="_blank">
+                    <i class="fa fa-external-link"></i> Read Publication
+                </a>
+            </div>
+            
+            <div class="publication-item">
+                <h3>2. CSK-SNIFFER: Commonsense Knowledge for Sniffing Object Detection Errors</h3>
+                <a href="https://ceur-ws.org/Vol-3135/bigvis_short2.pdf" target="_blank">
+                    <i class="fa fa-external-link"></i> Read Publication
+                </a>
+            </div>
+        </div>
+        
+        <div class="citation-section">
+            <h3>Citation 📖</h3>
+            <p>
+                If you find this tool useful in your research or work, we would greatly appreciate if you could cite our publications. 
+            </p>
+        </div>
+    </div>
+</body>
+</html>

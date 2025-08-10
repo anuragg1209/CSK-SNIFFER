@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Status</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Search Status</h1>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Current Search Information</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>Current Query:</strong> {{ status.current_query }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Search ID:</strong> {{ status.search_id }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Images Found:</strong> {{ status.images_count }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>CSV Files:</strong> {{ status.csv_files_count }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>TSV Files:</strong> {{ status.tsv_files_count }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Error File Present:</strong> {{ "Yes" if status.has_error_file else "No" }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="mt-3">
+            <a href="/" class="btn btn-primary">Back to Search</a>
+            <a href="/cleanup" class="btn btn-warning">Clean Up Files</a>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

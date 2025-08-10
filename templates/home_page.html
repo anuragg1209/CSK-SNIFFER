@@ -1,0 +1,123 @@
+<head>
+    <title>CSK SNIFFER</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .new-search-btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .new-search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .new-search-btn:active {
+            transform: translateY(0);
+        }
+        
+        .new-search-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .warning-text {
+            color: #856404;
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+    </style>
+  </head>
+<div class="container">
+  <div class="tutorial">
+    <ul>
+      <li>Home</li>
+      <li> Images <i class="fa fa-angle-down"></i>
+        <ul>
+          <a href="{{ url_for('get_images') }}" ><li>View Images</li></a>
+
+        </ul>
+      </li>
+      <li>Output Files <i class="fa fa-angle-down"></i>
+        <ul>
+          <a href="{{ url_for('output_status') }}" ><li>📊 Output Status </li></a>
+          <a href="{{ url_for('get_collocations_map') }}" ><li> Collocations Map </li></a>
+          <a href="{{ url_for('get_inverted_index') }}" ><li>Inverted Index</li></a>
+          <a href="{{ url_for('get_error_set') }}"><li>Error Set</li></a>
+        </ul>
+      </li>
+      <li>Knowledge Graph<i class="fa fa-angle-down"></i>
+      <ul>
+          <a href="{{ url_for('get_csk_graph') }}"><li>Click Here</li></a>
+      </ul>
+      </li>
+      <li><a href="{{ url_for('about_page') }}" style="text-decoration: none; color: inherit;">About</a></li>
+    </ul>
+    <div class="slider"></div>
+    <div class="information center">
+      <p align="center">Welcome to CSK-SNIFFER: Commonsense Knowledge for Sniffing Object Detection Errors</p>
+    </div>
+  </div>
+  
+  <!-- New Search Section -->
+  <div class="new-search-container">
+    <!-- <h3 style="color: #495057; margin-bottom: 15px;">🔍 Start New Search</h3> -->
+    <a href="{{ url_for('new_search') }}" 
+       onclick="return confirm('Are you sure you want to start a new search? This will delete all current search results, images, and output files. This action cannot be undone.')" 
+       class="new-search-btn">
+      Start New Search 🚀 
+    </a>
+    <div class="warning-text">
+      <strong>⚠️ Warning:</strong> Starting a new search will delete all current search results, images, and output files. This action cannot be undone.
+    </div>
+  </div>
+</div>
+
+<script>
+    // Check if we should refresh the images page
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('refresh_images') === 'true') {
+            // Clear the parameter
+            urlParams.delete('refresh_images');
+            const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+            window.history.replaceState({}, '', newUrl);
+            
+            // Show a message that images have been refreshed
+            const message = document.createElement('div');
+            message.className = 'alert alert-success';
+            message.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 1000; max-width: 300px;';
+            message.innerHTML = '<strong>✅ Success!</strong><br>Images have been refreshed and cache cleared.';
+            document.body.appendChild(message);
+            
+            // Remove the message after 3 seconds
+            setTimeout(() => {
+                if (message.parentNode) {
+                    message.parentNode.removeChild(message);
+                }
+            }, 3000);
+        }
+    });
+</script>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">

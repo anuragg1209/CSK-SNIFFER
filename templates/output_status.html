@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output File Status - CSK Sniffer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .status-container {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .status-header {
+            text-align: center;
+            color: #333;
+            margin-bottom: 3rem;
+        }
+        
+        .status-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .status-header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .file-status-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border-left: 5px solid #ddd;
+        }
+        
+        .file-status-card.exists {
+            border-left-color: #28a745;
+        }
+        
+        .file-status-card.missing {
+            border-left-color: #dc3545;
+        }
+        
+        .file-status-content {
+            padding: 1.5rem;
+        }
+        
+        .file-status-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #333;
+            margin: 0;
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.exists {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-badge.missing {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .file-description {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-message {
+            font-size: 0.9rem;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+        }
+        
+        .file-message.exists {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .file-message.missing {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .back-button .btn {
+            background: #F03861;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button .btn:hover {
+            background: #ee204e;
+            transform: translateX(-5px);
+            color: white;
+        }
+        
+        .summary-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        
+        .stat-item {
+            flex: 1;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #F03861;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .status-header h1 {
+                font-size: 2rem;
+            }
+            
+            .back-button {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 2rem;
+            }
+            
+            .summary-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-container">
+        <div class="container">
+            <!-- Home Button -->
+            <div class="back-button">
+                <a href="/home_page" class="btn">
+                    <i class="fa fa-home"></i> Back to Home
+                </a>
+            </div>
+            
+            <!-- Header -->
+            <div class="status-header">
+                <h1>Output File Status</h1>
+                <p>Check the status of your search output files</p>
+            </div>
+            
+            <!-- Summary Section -->
+            <div class="summary-section">
+                <h3>Search Summary</h3>
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">{{ status.images_count }}</div>
+                        <div class="stat-label">Images</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">{{ status.csv_files_count }}</div>
+                        <div class="stat-label">CSV Files</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">{{ status.tsv_files_count }}</div>
+                        <div class="stat-label">TSV Files</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">{{ status.has_error_file and 'Yes' or 'No' }}</div>
+                        <div class="stat-label">Error File</div>
+                    </div>
+                </div>
+                {% if status.current_query != 'No active search' %}
+                <div style="text-align: center; margin-top: 1rem; padding: 1rem; background-color: #e9ecef; border-radius: 5px;">
+                    <strong>Current Query:</strong> {{ status.current_query }}
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- File Status Cards -->
+            {% for file_key, file_info in file_status.items() %}
+            <div class="file-status-card {{ 'exists' if file_info.exists else 'missing' }}">
+                <div class="file-status-content">
+                    <div class="file-status-header">
+                        <h4 class="file-name">{{ file_info.name }}</h4>
+                        <span class="status-badge {{ 'exists' if file_info.exists else 'missing' }}">
+                            {% if file_info.exists %}
+                                <i class="fa fa-check"></i> Available
+                            {% else %}
+                                <i class="fa fa-times"></i> Missing
+                            {% endif %}
+                        </span>
+                    </div>
+                    <p class="file-description">{{ file_info.description }}</p>
+                    <div class="file-message {{ 'exists' if file_info.exists else 'missing' }}">
+                        {% if file_info.exists %}
+                            <i class="fa fa-info-circle"></i> File is available and ready to view.
+                        {% else %}
+                            <i class="fa fa-exclamation-triangle"></i> File is missing. Please run a search first to generate this output file.
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <!-- Action Buttons -->
+            <div style="text-align: center; margin-top: 2rem;">
+                {% if not status.has_any_output %}
+                <div style="margin-bottom: 1rem;">
+                    <p style="color: #666;">No output files found. Start by running a search:</p>
+                    <a href="/" class="btn btn-lg" style="background: #F03861; color: white; border: none; margin-right: 1rem;">
+                        <i class="fa fa-search"></i> Start New Search
+                    </a>
+                </div>
+                {% else %}
+                <div style="margin-bottom: 1rem;">
+                    <p style="color: #666;">View your output files:</p>
+                    <a href="/get_collocations_map" class="btn btn-primary" style="margin-right: 0.5rem;">
+                        <i class="fa fa-table"></i> Collocations
+                    </a>
+                    <a href="/get_inverted_index" class="btn btn-primary" style="margin-right: 0.5rem;">
+                        <i class="fa fa-list"></i> Inverted Index
+                    </a>
+                    <a href="/get_error_set" class="btn btn-primary" style="margin-right: 0.5rem;">
+                        <i class="fa fa-exclamation-triangle"></i> Error Set
+                    </a>
+                    <a href="/get_images" class="btn btn-primary">
+                        <i class="fa fa-image"></i> Images
+                    </a>
+                </div>
+                {% endif %}
+                
+                <a href="/cleanup" onclick="return confirm('Are you sure you want to clear all previous search files? This action cannot be undone.')" 
+                   class="btn btn-outline-danger">
+                    <i class="fa fa-trash"></i> Clear All Files
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Handle back button to redirect to home page
+        window.addEventListener('popstate', function(event) {
+            window.location.href = '/home_page';
+        });
+        
+        // Replace current history entry to prevent going back to search page
+        window.history.replaceState(null, null, window.location.href);
+    </script>
+</body>
+</html>
