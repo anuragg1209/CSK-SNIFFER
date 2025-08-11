@@ -12,6 +12,7 @@ import csv
 import argparse
 import subprocess
 from typing import List
+from darkflow import flow
 
 # Default directory for images
 DEFAULT_IMAGES_DIR = os.path.join('static', 'Images')
@@ -47,10 +48,10 @@ def run_yolo_detector(yolo_dir: str, images_dir: str) -> None:
     Changes to the YOLO directory, runs the command, and returns to the original directory.
     """
     command = [
-        'python', 'flow',
+        'flow',
         '--imgdir', images_dir + '/',
         '--model', 'cfg/yolo.cfg',
-        '--load', 'bin/yolo.weights',
+        '--load', '../bin/yolo.weights',
         '--json'
     ]
     original_dir = os.getcwd()

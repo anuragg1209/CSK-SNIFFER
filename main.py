@@ -41,7 +41,7 @@ if __name__ == '__main__':
     parser.add_argument('--image_output_dir',
                         action='store',
                         dest='image_output_dir',
-                        default=f'static/Images/',
+                        default=f'../static/Images/',
                         required=False,
                         help='Path where downloaded Images will be stored')
     parser.add_argument('--yolo_output_dir',
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     parser.add_argument('--yolo_dir',
                         action='store',
                         dest='yolo_dir',
-                        default='/Users/anurag/darkflow/',
+                        default='yolo/darkflow/',
                         required=False,
                         help='Directory where your YOLO model is present')
     parser.add_argument('--collocations_output_dir',
