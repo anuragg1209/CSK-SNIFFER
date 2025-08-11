@@ -1,4 +1,18 @@
-csk_sniffer_replicate
 __pycache__
-csk-testing
+.idea
 .DS_Store
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+csk_sniffer_replicate
+csk-testing
+csk-env
