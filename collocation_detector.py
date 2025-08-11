@@ -207,8 +207,10 @@ if __name__ == "__main__":
     inverted_index = {}  # triple -> arr_of_img_ids
     collocations_map = {}  # triple -> count
     for infile_path in compile_input_files(dir_or_file_path=args.input_dir):
-            img_id, df = reader(infile_path)
-            all_collocations_in_img(df,img_id,inverted_index,collocations_map)
+        if infile_path.endswith("gitkeep"):
+            continue
+        img_id, df = reader(infile_path)
+        all_collocations_in_img(df,img_id,inverted_index,collocations_map)
 
     # Save collocations map
     with open(f"{args.output_dir}/collocations.tsv", 'w') as outfile_collocations:

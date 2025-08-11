@@ -42,7 +42,7 @@ class Config:
     
     # Important files
     KB_FILE = Path('KB-CSK-SNIFFER.csv')
-    ERROR_FILE = Path('error_set.tsv')
+    ERROR_FILE = TSV_DIR / 'error_set.tsv'
     COLLOCATIONS_FILE = TSV_DIR / 'collocations.tsv'
     INVERTED_INDEX_FILE = TSV_DIR / 'inverted_index.tsv'
     

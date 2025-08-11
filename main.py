@@ -41,7 +41,7 @@ if __name__ == '__main__':
     parser.add_argument('--image_output_dir',
                         action='store',
                         dest='image_output_dir',
-                        default=f'../static/Images/',
+                        default=f'static/Images/',
                         required=False,
                         help='Path where downloaded Images will be stored')
     parser.add_argument('--yolo_output_dir',
