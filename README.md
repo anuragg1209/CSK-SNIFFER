@@ -41,6 +41,16 @@ pip install .
 
 ---
 
+## 4. Model Weights
+
+Model weights are included inside the folder `yolo/bin/`. Please download them using [git lfs](https://git-lfs.github.com/):
+
+```bash
+git lfs pull
+```
+
+---
+
 ## 4. Running the App
 
 Return to the home directory (`CSK-SNIFFER`) and run the demo locally:
@@ -48,16 +58,6 @@ Return to the home directory (`CSK-SNIFFER`) and run the demo locally:
 ```bash
 cd ../..
 python flask_app.py
-```
-
----
-
-## 5. Model Weights
-
-Model weights are included inside the folder `yolo/bin/`. Please download them using [git lfs](https://git-lfs.github.com/):
-
-```bash
-git lfs pull
 ```
 
 ---
