@@ -1,6 +1,6 @@
-# CSK-SNIFFER DEMO
+# CSK-SNIFFER DEMO 🚀
 
-CSK-SNIFFER is a demo project for detecting object detection errors using commonsense knowledge. This repository provides all the necessary code and setup instructions to run the demo locally.
+CSK-SNIFFER is a system for detecting object detection errors using commonsense knowledge. This repository provides all the necessary code and setup instructions to run the demo locally.
 
 ---
 
