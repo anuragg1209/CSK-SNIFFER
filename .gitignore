@@ -3,6 +3,12 @@ __pycache__
 .DS_Store
 darkflow
 
+# output files
+.csv
+.tsv
+.jpg
+.png
+
 
 # pyenv
 .python-version
