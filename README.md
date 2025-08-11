@@ -60,6 +60,14 @@ cd ../..
 python flask_app.py
 ```
 
+Then open your browser and go to:
+
+http://127.0.0.1:6007
+
+or
+
+http://localhost:6007
+
 ---
 
 ## Citation
