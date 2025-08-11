@@ -1,0 +1,2 @@
+yolo/bin/yolo.weights filter=lfs diff=lfs merge=lfs -text
+yolo/bin/yolov2-tiny.weights filter=lfs diff=lfs merge=lfs -text
