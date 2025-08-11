@@ -43,7 +43,7 @@ pip install .
 
 ## 4. Model Weights
 
-Model weights are included inside the folder `yolo/bin/`. Please download them using [git lfs](https://git-lfs.github.com/):
+Model weights are included inside the folder `yolo/bin/`. If the model weight files are not downloaded automatically, please download them manually using [git lfs](https://git-lfs.github.com/):
 
 ```bash
 git lfs pull
@@ -62,11 +62,9 @@ python flask_app.py
 
 Then open your browser and go to:
 
-http://127.0.0.1:6007
+http://127.0.0.1:6007 or http://localhost:6007
 
-or
-
-http://localhost:6007
+**Note:** By default, the demo will run on 5 images (i.e., the limit is set to 5). This limit can be easily increased if needed.
 
 ---
 
