@@ -4,10 +4,10 @@ __pycache__
 darkflow
 
 # output files
-.csv
-.tsv
-.jpg
-.png
+output/csv_files/*.csv
+output/tsv_files/*.tsv
+static/Images/*.jpg
+static/Images/out/*.json
 
 
 # pyenv
